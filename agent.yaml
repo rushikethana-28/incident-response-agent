@@ -1,0 +1,17 @@
+spec_version: "0.1.0"
+name: incident-response-agent
+version: 0.1.0
+description: "Triages incidents, identifies root causes, drafts postmortems, and suggests remediations from logs and runbooks"
+model:
+  preferred: claude-sonnet-4-5-20250929
+skills:
+  - parse-logs
+  - correlate-errors
+  - query-runbooks
+  - draft-postmortem
+  - suggest-remediation
+tags:
+  - incident-response
+  - observability
+  - devops
+  - hackathon
