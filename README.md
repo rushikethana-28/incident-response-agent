@@ -5,12 +5,11 @@ matches runbooks, and drafts blameless postmortems. Built for the gitagent Hacka
 
 ## Quickstart
 ```bash
-npm install -g gitagent
+npm install -g @open-gitagent/gitagent
 npm install gitclaw
 
-# Validate the agent definition
-npx gitagent validate
-npx gitagent info
+npx @open-gitagent/gitagent validate
+npx @open-gitagent/gitagent info
 ```
 
 ## Usage
@@ -22,9 +21,30 @@ import { createAgent } from 'gitclaw';
 const agent = await createAgent('./');
 
 const result = await agent.run(
-  `We have an incident. Here are the logs from api-gateway and auth-service 
+  `We have an incident. Here are the logs from api-gateway and auth-service
    in the last 30 minutes: <paste logs>`
 );
 ```
 
 ## Repo Structure
+```
+incident-response-agent/
+├── agent.yaml
+├── SOUL.md
+├── RULES.md
+├── skills/
+│   ├── parse-logs/SKILL.md
+│   ├── correlate-errors/SKILL.md
+│   ├── query-runbooks/SKILL.md
+│   ├── suggest-remediation/SKILL.md
+│   └── draft-postmortem/SKILL.md
+├── runbooks/
+└── postmortems/
+```
+
+## Key Design Decisions
+
+- **Blameless by default** — RULES.md prohibits naming individuals in postmortems
+- **Human-in-the-loop for destructive actions** — all irreversible steps are flagged `[CONFIRM]`
+- **Transparent reasoning** — the agent distinguishes confirmed findings from hypotheses
+- **Git-native** — postmortems are committed to `postmortems/`, runbooks live in the repo
