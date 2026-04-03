@@ -41,6 +41,14 @@ incident-response-agent/
 ├── runbooks/
 └── postmortems/
 ```
+## Adding Runbooks
+
+Drop `.md` files into `runbooks/` following this naming convention:
+`<service-name>-<failure-pattern>.md`
+
+The `query-runbooks` skill will automatically find and match them.
+
+Example: `runbooks/auth-service-cascade-failure.md`
 
 ## Key Design Decisions
 
